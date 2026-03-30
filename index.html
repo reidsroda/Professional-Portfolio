@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reid Sroda — Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF8F4;
+    --paper: #F2EEE6;
+    --ink: #1A1814;
+    --ink-soft: #4A4640;
+    --ink-muted: #8A8278;
+    --accent: #2D5A3D;
+    --accent-light: #4A8C5C;
+    --accent-pale: #E8F0EB;
+    --warm: #C4602A;
+    --warm-pale: #FAF0EA;
+    --border: #E0D8CC;
+    --gold: #B8962E;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ── HERO / ABOUT ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -300px; right: -300px;
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,90,61,0.055) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,96,42,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Top identity row */
+  .hero-identity {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-pale), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(45,90,61,0.2);
+  }
+
+  .identity-text {}
+  .identity-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .identity-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .status-dot {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-soft);
+    margin-left: auto;
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .status-dot::before {
+    content: '';
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #3DAA6C;
+    animation: pulse 2s infinite;
+  }
+
+  /* Main two-column layout */
+  .hero-body {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Left: headline + bio + ctas */
+  .hero-left {}
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-bio {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-bio-extra {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .hero-bio strong, .hero-bio-extra strong { color: var(--ink); font-weight: 600; }
+
+  .hero-ctas {
+    display: flex; gap: 14px; align-items: center;
+    animation: fadeUp 0.8s 0.5s ease both;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    padding: 13px 30px;
+    background: var(--accent);
+    color: white;
+    border: none; border-radius: 4px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    padding: 13px 26px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Quick-info chips below ctas */
+  .hero-chips {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .hero-chip .chip-icon { font-size: 15px; }
+
+  /* Right: detail cards */
+  .hero-right {
+    display: flex; flex-direction: column; gap: 14px;
+    animation: fadeIn 0.9s 0.5s ease both;
+  }
+
+  .detail-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: box-shadow 0.2s;
+  }
+  .detail-card:hover { box-shadow: 0 4px 20px rgba(26,24,20,0.07); }
+
+  .detail-card .dc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .detail-card .dc-value {
+    font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4;
+  }
+
+  /* Stats row */
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    animation: fadeUp 0.8s 0.6s ease both;
+    margin-top: 0;
+  }
+  .stat {
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--ink-muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeIn 1s 1.2s ease both;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .scroll-hint span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .scroll-arrow {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    color: var(--ink-muted);
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    padding: 100px 60px;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 60px;
+  }
+
+  /* ── ABOUT (now part of hero) ── */
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    transition: box-shadow 0.25s, transform 0.25s;
+    cursor: default;
+  }
+  .project-card:hover {
+    box-shadow: 0 12px 40px rgba(26,24,20,0.08);
+    transform: translateY(-3px);
+  }
+
+  .project-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .project-icon.green { background: var(--accent-pale); }
+  .project-icon.warm { background: var(--warm-pale); }
+  .project-icon.blue { background: #EAF0FA; }
+
+  .project-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .project-tag.ml { background: var(--accent-pale); color: var(--accent); }
+  .project-tag.nlp { background: var(--warm-pale); color: var(--warm); }
+  .project-tag.cv { background: #EAF0FA; color: #2A4A8A; }
+
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 21px;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .project-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .project-metrics {
+    display: flex; gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .metric { display: flex; flex-direction: column; }
+  .metric-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--ink);
+  }
+  .metric-label {
+    font-size: 11px; color: var(--ink-muted);
+    margin-top: 1px;
+  }
+
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 20px;
+  }
+  .tech-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── AWARDS ── */
+  #awards { background: var(--paper); }
+
+  .awards-list { display: flex; flex-direction: column; gap: 0; }
+
+  .award-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .award-row:first-child { border-top: 1px solid var(--border); }
+
+  .award-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .award-info h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .award-info p {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .award-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .award-badge.gold { background: #FEF6E4; color: var(--gold); border: 1px solid #E8D48A; }
+  .award-badge.silver { background: #F4F4F4; color: #6A6A6A; border: 1px solid #D0D0D0; }
+  .award-badge.green { background: var(--accent-pale); color: var(--accent); border: 1px solid #B0CDB8; }
+
+  /* ── SKILLS ── */
+  .skills-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .skill-group { margin-bottom: 40px; }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+
+  .skill-tag {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(45,90,61,0.08); }
+  .skill-tag .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+  }
+  .dot-green { background: var(--accent); }
+  .dot-warm { background: var(--warm); }
+  .dot-blue { background: #3A6AAA; }
+  .dot-gold { background: var(--gold); }
+
+  .proficiency-bars { display: flex; flex-direction: column; gap: 18px; }
+
+  .prof-item {}
+  .prof-header {
+    display: flex; justify-content: space-between;
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+  .prof-name { font-weight: 500; }
+  .prof-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .prof-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .prof-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--accent);
+    transform-origin: left;
+    animation: growBar 1.2s ease both;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); color: white; }
+  #contact .section-label { color: #7ABF94; }
+  #contact .section-title { color: white; }
+  #contact .section-sub { color: rgba(255,255,255,0.55); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(122,191,148,0.4);
+  }
+
+  .contact-link-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .contact-link-text {}
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2px;
+  }
+  .contact-link-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .contact-form-area {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-field {
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .form-field label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-family: 'DM Mono', monospace;
+  }
+  .form-field input,
+  .form-field textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 13px 16px;
+    color: white;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: rgba(122,191,148,0.5);
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+  .btn-send {
+    padding: 15px 36px;
+    background: #2D5A3D;
+    color: white;
+    border: none; border-radius: 6px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-send:hover { background: #3a7050; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 28px 60px;
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+  }
+  footer span { font-family: 'DM Mono', monospace; letter-spacing: 0.06em; }
+
+  /* ── KEYFRAMES ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    .hero-body { grid-template-columns: 1fr; gap: 40px; }
+    .hero-right { flex-direction: row; flex-wrap: wrap; }
+    .detail-card { flex: 1 1 calc(50% - 7px); min-width: 200px; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    section { padding: 80px 24px; }
+    hr.divider { margin: 0 24px; }
+    .hero { padding: 100px 24px 80px; }
+    .hero-identity { flex-wrap: wrap; }
+    .status-dot { margin-left: 0; }
+    .skills-wrapper, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .award-row { grid-template-columns: 1fr; gap: 8px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Reid <span>Sroda</span></div>
+  <div class="nav-links">
+    <a href="#home">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO / ABOUT ME -->
+<section class="hero" id="home">
+
+  <!-- Identity bar -->
+  <div class="hero-identity">
+    <div class="avatar">R</div>
+    <div class="identity-text">
+      <div class="identity-name">Reid Sroda</div>
+      <div class="identity-role">Data Scientist</div>
+    </div>
+    <div class="status-dot">Milwaukee, WI</div>
+  </div>
+
+  <!-- Body: headline + bio left, detail cards right -->
+  <div class="hero-body">
+    <div class="hero-left">
+      <div class="hero-label">↳ About Me</div>
+      <h1>Building systems that<br><em>find what's hidden.</em></h1>
+      <p class="hero-bio">
+        I'm a <strong>Data Scientist at Komatsu</strong> focused on MLOps, anomaly detection, and production-grade data pipelines. I've built ML systems that identify product defects weeks before they surface manually — saving millions in warranty costs.
+      </p>
+      <p class="hero-bio-extra">
+        My background spans <strong>statistical modeling, PySpark ETL, and applied ML</strong> across manufacturing and non-profit domains. I'm currently pursuing my M.S. in Data Science at Purdue while continuing to ship impactful work at Komatsu.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+      <div class="hero-chips">
+        <span class="hero-chip"><span class="chip-icon">📍</span> Milwaukee, WI</span>
+        <span class="hero-chip"><span class="chip-icon">🎓</span> M.S. Data Science, Purdue</span>
+        <span class="hero-chip"><span class="chip-icon">💼</span> Data Scientist @ Komatsu</span>
+        <span class="hero-chip"><span class="chip-icon">🔬</span> MLOps · Anomaly Detection</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="detail-card">
+        <div class="dc-label">Current Role</div>
+        <div class="dc-value">Data Scientist · Komatsu (Dec 2025–Present)</div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Education</div>
+        <div class="dc-value">M.S. Data Science · Purdue University (2025–2028)<br>B.S. Data Science & Statistics · UW-Madison (2020–2024)</div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Specializations</div>
+        <div class="dc-value">Anomaly Detection · ETL Pipelines · Statistical Alerting · NLP Clustering</div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Tools & Platforms</div>
+        <div class="dc-value">Palantir Foundry · Salesforce · Snowflake · Apache Spark</div>
+      </div>
+      <div class="detail-card">
+        <div class="dc-label">Contact</div>
+        <div class="dc-value">rgsroda@yahoo.com · 920-450-9729</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Exp.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$2M</div>
+      <div class="stat-label">Warranty Savings</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Awards</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">71%</div>
+      <div class="stat-label">BetBot Win Rate</div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <a class="scroll-hint" href="#projects">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow">↓</div>
+  </a>
+
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">01 — Projects</div>
+  <h2 class="section-title">Selected work.</h2>
+  <p class="section-sub">Production systems and personal projects — each built with a focus on real-world impact and measurable outcomes.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon green">🔍</div>
+      <span class="project-tag ml">MLOps · Anomaly Detection</span>
+      <h3>AI-Powered Product Defect Detection</h3>
+      <p>Led end-to-end MLOps lifecycle for an anomaly detection system using semantic embeddings and unsupervised HDBSCAN clustering to proactively identify product defects from failure reports at Komatsu.</p>
+      <div class="project-tech">
+        <span class="tech-chip">Python</span>
+        <span class="tech-chip">HDBSCAN</span>
+        <span class="tech-chip">Salesforce API</span>
+        <span class="tech-chip">Palantir Foundry</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <span class="metric-val">22%</span>
+          <span class="metric-label">Faster issue ID</span>
+        </div>
+        <div class="metric">
+          <span class="metric-val">$2M</span>
+          <span class="metric-label">Annual warranty savings</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon warm">📦</div>
+      <span class="project-tag nlp">Data Engineering · Statistics</span>
+      <h3>Supply Chain Anomaly Alerting System</h3>
+      <p>Engineered a statistical alerting system using Poisson distribution modeling over rolling average time series to autonomously flag abnormal part order spikes — catching supply chain issues months before manual review.</p>
+      <div class="project-tech">
+        <span class="tech-chip">PySpark</span>
+        <span class="tech-chip">Snowflake</span>
+        <span class="tech-chip">Salesforce</span>
+        <span class="tech-chip">Palantir Foundry</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <span class="metric-val">4 mo.</span>
+          <span class="metric-label">Earlier detection</span>
+        </div>
+        <div class="metric">
+          <span class="metric-val">50%</span>
+          <span class="metric-label">Review efficiency gain</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon blue">🏀</div>
+      <span class="project-tag cv">Personal Project</span>
+      <h3>BetBot.AI — Automated Wagering Software</h3>
+      <p>Built an automated NBA game-totals wagering system integrating SQLite with Python, including web scraping, live data collection, automated querying, and result tracking across two full NBA seasons.</p>
+      <div class="project-tech">
+        <span class="tech-chip">Python</span>
+        <span class="tech-chip">SQLite</span>
+        <span class="tech-chip">Dash</span>
+        <span class="tech-chip">Excel</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <span class="metric-val">71%</span>
+          <span class="metric-label">2023 win rate</span>
+        </div>
+        <div class="metric">
+          <span class="metric-val">68%</span>
+          <span class="metric-label">2024 win rate</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-label">02 — Recognition</div>
+  <h2 class="section-title">Awards &<br>presentations.</h2>
+  <p class="section-sub">Recognition from industry competitions and conference presentations.</p>
+
+  <div class="awards-list">
+
+    <div class="award-row">
+      <div class="award-year">Feb 2026</div>
+      <div class="award-info">
+        <h4>MINEXCHANGE — SME Annual Conference & Expo</h4>
+        <p>Presentation · "Mining the Failures: LLM-Assisted Clustering of Product Failure Reports"</p>
+      </div>
+      <span class="award-badge green">🎤 Speaker</span>
+    </div>
+
+    <div class="award-row">
+      <div class="award-year">Oct 2025</div>
+      <div class="award-info">
+        <h4>Komatsu Hackathon — 3rd Place</h4>
+        <p>Komatsu Internal · Systemic issue identification algorithm to detect product issues earlier</p>
+      </div>
+      <span class="award-badge gold">🥉 3rd Place</span>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">03 — Skills & Stack</div>
+  <h2 class="section-title">Tools of<br>the trade.</h2>
+  <p class="section-sub">A snapshot of the languages, platforms, and tools I work with daily.</p>
+
+  <div class="skills-wrapper">
+    <div>
+      <div class="skill-group">
+        <div class="skill-group-title">Programming Languages</div>
+        <div class="skill-tags">
+          <div class="skill-tag"><span class="dot dot-green"></span>Python</div>
+          <div class="skill-tag"><span class="dot dot-green"></span>SQL</div>
+          <div class="skill-tag"><span class="dot dot-green"></span>PySpark</div>
+          <div class="skill-tag"><span class="dot dot-green"></span>R</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Platforms & Databases</div>
+        <div class="skill-tags">
+          <div class="skill-tag"><span class="dot dot-warm"></span>Palantir Foundry</div>
+          <div class="skill-tag"><span class="dot dot-warm"></span>Snowflake</div>
+          <div class="skill-tag"><span class="dot dot-warm"></span>Apache Spark</div>
+          <div class="skill-tag"><span class="dot dot-warm"></span>Salesforce</div>
+          <div class="skill-tag"><span class="dot dot-warm"></span>SAP</div>
+          <div class="skill-tag"><span class="dot dot-warm"></span>SQLite</div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Developer Tools & Analytics</div>
+        <div class="skill-tags">
+          <div class="skill-tag"><span class="dot dot-blue"></span>Git / GitHub</div>
+          <div class="skill-tag"><span class="dot dot-blue"></span>VS Code</div>
+          <div class="skill-tag"><span class="dot dot-blue"></span>Jupyter Notebook</div>
+          <div class="skill-tag"><span class="dot dot-blue"></span>Power BI</div>
+          <div class="skill-tag"><span class="dot dot-blue"></span>RStudio</div>
+          <div class="skill-tag"><span class="dot dot-blue"></span>Excel</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="skill-group-title" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--border);">Core Competencies</div>
+      <div class="proficiency-bars">
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">Machine Learning & MLOps</span>
+            <span class="prof-pct">90%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:90%; animation-delay:0.1s"></div></div>
+        </div>
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">Data Engineering & ETL</span>
+            <span class="prof-pct">88%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:88%; animation-delay:0.2s"></div></div>
+        </div>
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">Statistical Modeling</span>
+            <span class="prof-pct">85%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:85%; animation-delay:0.3s"></div></div>
+        </div>
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">Anomaly Detection & Clustering</span>
+            <span class="prof-pct">87%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:87%; animation-delay:0.4s"></div></div>
+        </div>
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">Data Visualization & Dashboards</span>
+            <span class="prof-pct">80%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:80%; animation-delay:0.5s"></div></div>
+        </div>
+        <div class="prof-item">
+          <div class="prof-header">
+            <span class="prof-name">NLP & LLM Applications</span>
+            <span class="prof-pct">78%</span>
+          </div>
+          <div class="prof-bar"><div class="prof-fill" style="width:78%; animation-delay:0.6s"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">04 — Contact</div>
+  <h2 class="section-title">Let's build<br>something.</h2>
+  <p class="section-sub">Whether it's a role, collaboration, or project — I'd love to hear from you.</p>
+
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a href="mailto:rgsroda@yahoo.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">rgsroda@yahoo.com</div>
+        </div>
+      </a>
+      <a href="tel:9204509729" class="contact-link">
+        <div class="contact-link-icon">📞</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-value">920-450-9729</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/reid-sroda" target="_blank" class="contact-link">
+        <div class="contact-link-icon">💼</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/reid-sroda</div>
+        </div>
+      </a>
+      <a href="https://github.com/rgsroda" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🐙</div>
+        <div class="contact-link-text">
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-value">github.com/rgsroda</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="contact-form-area">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com">
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Subject</label>
+        <input type="text" placeholder="What's this about?">
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea rows="5" placeholder="Tell me about your project, role, or idea..."></textarea>
+      </div>
+      <button class="btn-send">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Reid Sroda</span>
+  <span>Data Scientist · Milwaukee, WI</span>
+</footer>
+
+</body>
+</html>
