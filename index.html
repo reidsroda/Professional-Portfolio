@@ -897,7 +897,7 @@
     .avatar { width: 180px; height: 180px; }
     .hero-body { grid-template-columns: repeat(2, 1fr); }
     .skills-wrapper, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .project-row { grid-template-columns: 1fr; }
     .award-row { grid-template-columns: 1fr; gap: 8px; }
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
@@ -1015,85 +1015,185 @@
 <hr class="divider">
 
 <!-- PROJECTS -->
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">01 — Projects</div>
   <h2 class="section-title">Selected work.</h2>
-  <p class="section-sub">Production systems and personal projects — each built with a focus on real-world impact and measurable outcomes.</p>
+  <p class="section-sub">Production systems and personal projects — click any project to see more detail.</p>
 
-  <div class="projects-grid">
+  <div class="projects-list">
 
-    <div class="project-card">
-      <div class="project-icon green">🔍</div>
-      <span class="project-tag ml">MLOps · Anomaly Detection</span>
-      <h3>AI-Powered Product Defect Detection</h3>
-      <p>Led end-to-end MLOps lifecycle for an anomaly detection system using semantic embeddings and unsupervised HDBSCAN clustering to proactively identify product defects from failure reports at Komatsu.</p>
-      <div class="project-tech">
-        <span class="tech-chip">Python</span>
-        <span class="tech-chip">HDBSCAN</span>
-        <span class="tech-chip">Salesforce API</span>
-        <span class="tech-chip">Palantir Foundry</span>
+    <div class="project-row" onclick="openProject('defect')">
+      <div class="project-thumb green-bg">
+        <div class="project-thumb-inner">🔍</div>
       </div>
-      <div class="project-metrics">
-        <div class="metric">
-          <span class="metric-val">22%</span>
-          <span class="metric-label">Faster issue ID</span>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag ml">MLOps · Anomaly Detection</span>
+          <span class="project-date">Dec 2025 – Present</span>
         </div>
-        <div class="metric">
-          <span class="metric-val">$2M</span>
-          <span class="metric-label">Annual warranty savings</span>
+        <h3>AI-Powered Product Defect Detection</h3>
+        <p>Led end-to-end MLOps lifecycle for an anomaly detection system using semantic embeddings and unsupervised HDBSCAN clustering to proactively identify product defects from failure reports at Komatsu.</p>
+        <div class="project-tech-row">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">HDBSCAN</span>
+          <span class="tech-chip">Salesforce API</span>
+          <span class="tech-chip">Palantir Foundry</span>
         </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-icon warm">📦</div>
-      <span class="project-tag nlp">Data Engineering · Statistics</span>
-      <h3>Supply Chain Anomaly Alerting System</h3>
-      <p>Engineered a statistical alerting system using Poisson distribution modeling over rolling average time series to autonomously flag abnormal part order spikes — catching supply chain issues months before manual review.</p>
-      <div class="project-tech">
-        <span class="tech-chip">PySpark</span>
-        <span class="tech-chip">Snowflake</span>
-        <span class="tech-chip">Salesforce</span>
-        <span class="tech-chip">Palantir Foundry</span>
+    <div class="project-row" onclick="openProject('supplychain')">
+      <div class="project-thumb warm-bg">
+        <div class="project-thumb-inner">📦</div>
       </div>
-      <div class="project-metrics">
-        <div class="metric">
-          <span class="metric-val">4 mo.</span>
-          <span class="metric-label">Earlier detection</span>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag nlp">Data Engineering · Statistics</span>
+          <span class="project-date">Dec 2024 – Dec 2025</span>
         </div>
-        <div class="metric">
-          <span class="metric-val">50%</span>
-          <span class="metric-label">Review efficiency gain</span>
+        <h3>Supply Chain Anomaly Alerting System</h3>
+        <p>Engineered a statistical alerting system using Poisson distribution modeling over rolling average time series to autonomously flag abnormal part order spikes — catching supply chain issues months before manual review.</p>
+        <div class="project-tech-row">
+          <span class="tech-chip">PySpark</span>
+          <span class="tech-chip">Snowflake</span>
+          <span class="tech-chip">Salesforce</span>
+          <span class="tech-chip">Palantir Foundry</span>
         </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-icon blue">🏀</div>
-      <span class="project-tag cv">Personal Project</span>
-      <h3>BetBot.AI — Automated Wagering Software</h3>
-      <p>Built an automated NBA game-totals wagering system integrating SQLite with Python, including web scraping, live data collection, automated querying, and result tracking across two full NBA seasons.</p>
-      <div class="project-tech">
-        <span class="tech-chip">Python</span>
-        <span class="tech-chip">SQLite</span>
-        <span class="tech-chip">Dash</span>
-        <span class="tech-chip">Excel</span>
+    <div class="project-row" onclick="openProject('betbot')">
+      <div class="project-thumb blue-bg">
+        <div class="project-thumb-inner">🏀</div>
       </div>
-      <div class="project-metrics">
-        <div class="metric">
-          <span class="metric-val">71%</span>
-          <span class="metric-label">2023 win rate</span>
+      <div class="project-info">
+        <div class="project-meta">
+          <span class="project-tag cv">Personal Project</span>
+          <span class="project-date">Oct 2024</span>
         </div>
-        <div class="metric">
-          <span class="metric-val">68%</span>
-          <span class="metric-label">2024 win rate</span>
+        <h3>BetBot.AI — Automated Wagering Software</h3>
+        <p>Built an automated NBA game-totals wagering system integrating SQLite with Python, including web scraping, live data collection, automated querying, and result tracking across two full NBA seasons.</p>
+        <div class="project-tech-row">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">SQLite</span>
+          <span class="tech-chip">Dash</span>
+          <span class="tech-chip">Excel</span>
         </div>
       </div>
     </div>
 
   </div>
 </section>
+<!-- PROJECT DETAIL OVERLAYS -->
+<div class="project-overlay" id="overlay-defect">
+  <div class="overlay-inner">
+    <button class="overlay-back" onclick="closeProject()">Back to Projects</button>
+    <div class="overlay-hero">
+      <div class="overlay-thumb green-bg">🔍</div>
+      <div class="overlay-header">
+        <div class="overlay-meta">
+          <span class="project-tag ml">MLOps · Anomaly Detection</span>
+          <span class="project-date">Dec 2025 – Present</span>
+        </div>
+        <h2>AI-Powered Product Defect Detection</h2>
+        <p class="overlay-desc">Led end-to-end MLOps lifecycle for an anomaly detection system at Komatsu. Engineered a semantic embedding pipeline feeding into unsupervised HDBSCAN clustering to proactively surface product defects from warranty and field failure reports — weeks before they would have been flagged manually. Integrated outputs directly into Salesforce via REST APIs for automated delivery to engineering and warranty teams.</p>
+        <div class="overlay-links">
+          <a href="https://github.com/rgsroda" target="_blank" class="overlay-link">🐙 GitHub</a>
+        </div>
+      </div>
+    </div>
+    <hr class="overlay-divider">
+    <div class="overlay-stack">
+      <h4>Tech Stack</h4>
+      <div class="overlay-chips">
+        <span class="overlay-chip">Python</span>
+        <span class="overlay-chip">HDBSCAN</span>
+        <span class="overlay-chip">Semantic Embeddings</span>
+        <span class="overlay-chip">Salesforce REST API</span>
+        <span class="overlay-chip">Palantir Foundry</span>
+        <span class="overlay-chip">MLOps</span>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="project-overlay" id="overlay-supplychain">
+  <div class="overlay-inner">
+    <button class="overlay-back" onclick="closeProject()">Back to Projects</button>
+    <div class="overlay-hero">
+      <div class="overlay-thumb warm-bg">📦</div>
+      <div class="overlay-header">
+        <div class="overlay-meta">
+          <span class="project-tag nlp">Data Engineering · Statistics</span>
+          <span class="project-date">Dec 2024 – Dec 2025</span>
+        </div>
+        <h2>Supply Chain Anomaly Alerting System</h2>
+        <p class="overlay-desc">Designed and deployed a production-grade PySpark ETL pipeline to ingest, validate, and cleanse large-scale raw Salesforce datasets. Built a statistical alerting system leveraging Poisson distribution modeling over rolling average time series to autonomously flag abnormal part order spikes — detecting supply chain anomalies an average of 4 months earlier than manual review. Also architected a Palantir Foundry module empowering product support engineers to interactively analyze complex datasets, increasing report review efficiency by 50%.</p>
+        <div class="overlay-links">
+          <a href="https://github.com/rgsroda" target="_blank" class="overlay-link">🐙 GitHub</a>
+        </div>
+      </div>
+    </div>
+    <hr class="overlay-divider">
+    <div class="overlay-stack">
+      <h4>Tech Stack</h4>
+      <div class="overlay-chips">
+        <span class="overlay-chip">PySpark</span>
+        <span class="overlay-chip">Snowflake</span>
+        <span class="overlay-chip">Salesforce</span>
+        <span class="overlay-chip">Palantir Foundry</span>
+        <span class="overlay-chip">Poisson Modeling</span>
+        <span class="overlay-chip">ETL Pipelines</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-overlay" id="overlay-betbot">
+  <div class="overlay-inner">
+    <button class="overlay-back" onclick="closeProject()">Back to Projects</button>
+    <div class="overlay-hero">
+      <div class="overlay-thumb blue-bg">🏀</div>
+      <div class="overlay-header">
+        <div class="overlay-meta">
+          <span class="project-tag cv">Personal Project</span>
+          <span class="project-date">Oct 2024</span>
+        </div>
+        <h2>BetBot.AI — Automated Wagering Software</h2>
+        <p class="overlay-desc">Built a fully automated NBA game-totals wagering system from scratch. Integrated SQLite with Python to store and extract data from 4 tables modeling live NBA game totals. Automated web scraping, data collection, SQLite querying, navigation, and result storage. Achieved a 71% success rate for the 2023 NBA season and 68% for 2024.</p>
+        <div class="overlay-links">
+          <a href="https://github.com/rgsroda" target="_blank" class="overlay-link">🐙 GitHub</a>
+        </div>
+      </div>
+    </div>
+    <hr class="overlay-divider">
+    <div class="overlay-stack">
+      <h4>Tech Stack</h4>
+      <div class="overlay-chips">
+        <span class="overlay-chip">Python</span>
+        <span class="overlay-chip">SQLite</span>
+        <span class="overlay-chip">Dash</span>
+        <span class="overlay-chip">Web Scraping</span>
+        <span class="overlay-chip">Excel</span>
+        <span class="overlay-chip">Data Automation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openProject(id) {
+    document.getElementById('overlay-' + id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+  }
+  function closeProject() {
+    document.querySelectorAll('.project-overlay').forEach(o => o.classList.remove('active'));
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
+</script>
 <hr class="divider">
 
 <!-- AWARDS -->
