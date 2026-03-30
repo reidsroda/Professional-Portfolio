@@ -114,14 +114,19 @@
   }
 
   .avatar {
-    width: 80px; height: 80px;
+    width: 110px; height: 110px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-pale), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px; color: white;
+    overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 4px 20px rgba(45,90,61,0.2);
+    box-shadow: 0 4px 24px rgba(45,90,61,0.18);
+    border: 3px solid white;
+    outline: 1px solid var(--border);
+  }
+  .avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .identity-text {}
@@ -773,7 +778,7 @@
 
   <!-- Identity bar -->
   <div class="hero-identity">
-    <div class="avatar">R</div>
+    <div class="avatar"><img src="headshot.jpg" alt="Reid Sroda"></div>
     <div class="identity-text">
       <div class="identity-name">Reid Sroda</div>
       <div class="identity-role">Data Scientist</div>
@@ -823,7 +828,7 @@
       </div>
       <div class="detail-card">
         <div class="dc-label">Contact</div>
-        <div class="dc-value">rgsroda@yahoo.com · 920-450-9729</div>
+        <div class="dc-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e795809495888386a79e868f8888c984888a">[email&#160;protected]</a> · 920-450-9729</div>
       </div>
     </div>
   </div>
@@ -1070,11 +1075,11 @@
 
   <div class="contact-grid">
     <div class="contact-links">
-      <a href="mailto:rgsroda@yahoo.com" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#1b697c6869747f7a5b627a73747435787476" class="contact-link">
         <div class="contact-link-icon">✉️</div>
         <div class="contact-link-text">
           <div class="contact-link-label">Email</div>
-          <div class="contact-link-value">rgsroda@yahoo.com</div>
+          <div class="contact-link-value"><span class="__cf_email__" data-cfemail="05776276776a6164457c646d6a6a2b666a68">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="tel:9204509729" class="contact-link">
@@ -1117,17 +1122,4 @@
       </div>
       <div class="form-field">
         <label>Message</label>
-        <textarea rows="5" placeholder="Tell me about your project, role, or idea..."></textarea>
-      </div>
-      <button class="btn-send">Send Message →</button>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2026 Reid Sroda</span>
-  <span>Data Scientist · Milwaukee, WI</span>
-</footer>
-
-</body>
-</html>
+        <textarea rows="5" placeholder="Tell me about your project
