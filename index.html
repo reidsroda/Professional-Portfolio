@@ -84,6 +84,7 @@
     position: relative;
     overflow: hidden;
   }
+  
 
   .hero::before {
     content: '';
@@ -177,7 +178,7 @@
   /* ── BOTTOM: 5-column detail cards ── */
   .hero-body {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 14px;
     animation: fadeUp 0.8s 0.45s ease both;
   }
@@ -186,6 +187,31 @@
   .hero-summary {}
   .hero-chips { display: none; }
   .hero-right { display: contents; }
+  .hero-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .hero-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+  .hero-link-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 2px 8px rgba(45,90,61,0.1);
+  }
 
   .btn-primary {
     padding: 13px 30px;
@@ -768,7 +794,11 @@
       <div class="hero-name-block">
         <div class="identity-name">Reid Sroda</div>
         <span class="identity-role">Data Scientist · Milwaukee, WI</span>
-        <div class="status-dot">Open to Opportunities</div>
+        <div class="hero-links">
+          <a href="https://linkedin.com/in/reid-sroda" target="_blank" class="hero-link-btn">💼 LinkedIn</a>
+          <a href="https://github.com/rgsroda" target="_blank" class="hero-link-btn">🐙 GitHub</a>
+          <a href="mailto:rgsroda@yahoo.com" class="hero-link-btn">✉️ Email</a>
+        </div>
       </div>
       <p class="hero-summary-text">
         I'm a <strong>Data Scientist at Komatsu</strong> focused on MLOps, anomaly detection, and production-grade data pipelines. I've built ML systems that identify product defects weeks before they surface manually — delivering an estimated <strong>$2M in annual warranty savings</strong>.
@@ -811,6 +841,16 @@
         <span class="dc-tag">Snowflake</span>
         <span class="dc-tag">Salesforce</span>
         <span class="dc-tag">Apache Spark</span>
+      </div>
+    </div>
+    <div class="detail-card">
+      <div class="dc-label"><span class="dc-emoji">🛠️</span> Languages</div>
+      <div class="dc-value">
+        <span class="dc-tag">Python & Pypsark</span>
+        <span class="dc-tag">SQL</span>
+        <span class="dc-tag">R</span>
+        <span class="dc-tag">JavaScript</span>
+        <span class="dc-tag">MATLAB</span>
       </div>
     </div>
   </div>
