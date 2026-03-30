@@ -104,22 +104,23 @@
     pointer-events: none;
   }
 
-  /* Top identity row */
-  .hero-identity {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    margin-bottom: 48px;
+  /* ── TOP SECTION: photo left, summary right ── */
+  .hero-top {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: end;
+    margin-bottom: 56px;
     animation: fadeUp 0.8s 0.2s ease both;
   }
 
   .avatar {
-    width: 110px; height: 110px;
+    width: 260px; height: 260px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: 0 4px 24px rgba(45,90,61,0.18);
-    border: 3px solid white;
+    box-shadow: 0 8px 48px rgba(45,90,61,0.18);
+    border: 5px solid white;
     outline: 1px solid var(--border);
   }
   .avatar img {
@@ -129,26 +130,34 @@
     display: block;
   }
 
-  .identity-text {}
+  /* Summary panel — anchored to bottom of photo */
+  .hero-summary {
+    padding-bottom: 8px;
+  }
+
+  .hero-name-block {
+    margin-bottom: 20px;
+  }
   .identity-name {
     font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    line-height: 1.1;
-    margin-bottom: 4px;
+    font-size: 42px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
   }
   .identity-role {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-size: 12px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
   }
-
   .status-dot {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 12px; color: var(--ink-soft);
-    margin-left: auto;
-    padding: 8px 16px;
+    padding: 7px 14px;
     background: white;
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -160,59 +169,45 @@
     animation: pulse 2s infinite;
   }
 
-  /* Main two-column layout */
-  .hero-body {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 64px;
-    align-items: start;
-  }
-
-  /* Left: headline + bio + ctas */
-  .hero-left {}
-
-  .hero-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(48px, 5vw, 76px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 24px;
-    animation: fadeUp 0.8s 0.35s ease both;
-  }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-
-  .hero-bio {
-    font-size: 17px;
+  .hero-summary-text {
+    font-size: 16px;
     font-weight: 300;
     color: var(--ink-soft);
     line-height: 1.8;
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s 0.4s ease both;
+    margin-bottom: 0;
   }
-  .hero-bio-extra {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--ink-muted);
-    line-height: 1.75;
-    margin-bottom: 36px;
+  .hero-summary-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── BOTTOM SECTION: detail cards + chips ── */
+  .hero-body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 0;
     animation: fadeUp 0.8s 0.45s ease both;
   }
-  .hero-bio strong, .hero-bio-extra strong { color: var(--ink); font-weight: 600; }
 
-  .hero-ctas {
-    display: flex; gap: 14px; align-items: center;
-    animation: fadeUp 0.8s 0.5s ease both;
-    margin-bottom: 48px;
+  /* Left: headline + bio + ctas — no longer used as layout wrapper */
+  .hero-left {}
+
+  /* Quick-info chips */
+  .hero-chips {
+    display: contents;
+  }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .hero-chip .chip-icon { font-size: 15px; }
+
+  /* Detail cards in the bottom grid */
+  .hero-right {
+    display: contents;
   }
 
   .btn-primary {
@@ -245,47 +240,24 @@
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Quick-info chips below ctas */
-  .hero-chips {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    animation: fadeUp 0.8s 0.55s ease both;
-  }
-  .hero-chip {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 8px 14px;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  .hero-chip .chip-icon { font-size: 15px; }
-
-  /* Right: detail cards */
-  .hero-right {
-    display: flex; flex-direction: column; gap: 14px;
-    animation: fadeIn 0.9s 0.5s ease both;
-  }
-
   .detail-card {
     background: white;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 20px 22px;
+    padding: 18px 20px;
     transition: box-shadow 0.2s;
   }
   .detail-card:hover { box-shadow: 0 4px 20px rgba(26,24,20,0.07); }
-
   .detail-card .dc-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
   .detail-card .dc-value {
-    font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4;
+    font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4;
   }
 
   /* Stats row */
@@ -297,7 +269,7 @@
     overflow: hidden;
     background: white;
     animation: fadeUp 0.8s 0.6s ease both;
-    margin-top: 0;
+    margin-top: 28px;
   }
   .stat {
     padding: 20px 16px;
@@ -733,9 +705,9 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
-    .hero-body { grid-template-columns: 1fr; gap: 40px; }
-    .hero-right { flex-direction: row; flex-wrap: wrap; }
-    .detail-card { flex: 1 1 calc(50% - 7px); min-width: 200px; }
+    .hero-top { grid-template-columns: 200px 1fr; gap: 36px; }
+    .avatar { width: 200px; height: 200px; }
+    .hero-body { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 900px) {
@@ -744,8 +716,10 @@
     section { padding: 80px 24px; }
     hr.divider { margin: 0 24px; }
     .hero { padding: 100px 24px 80px; }
-    .hero-identity { flex-wrap: wrap; }
-    .status-dot { margin-left: 0; }
+    .hero-top { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .avatar { width: 180px; height: 180px; }
+    .hero-ctas { justify-content: center; }
+    .hero-body { grid-template-columns: repeat(2, 1fr); }
     .skills-wrapper, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     .projects-grid { grid-template-columns: 1fr; }
     .award-row { grid-template-columns: 1fr; gap: 8px; }
@@ -755,6 +729,7 @@
 
   @media (max-width: 600px) {
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-body { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
 </style>
@@ -776,81 +751,53 @@
 <!-- HERO / ABOUT ME -->
 <section class="hero" id="home">
 
-  <!-- Identity bar -->
-  <div class="hero-identity">
-    <div class="avatar"><img src="headshot.jpg"></div>
-    <div class="identity-text">
-      <div class="identity-name">Reid Sroda</div>
-      <div class="identity-role">Data Scientist</div>
+  <!-- TOP: large photo left, professional summary right (aligned to bottom half) -->
+  <div class="hero-top">
+    <div class="avatar"><img src="headshot.jpg" alt="Reid Sroda"></div>
+
+    <div class="hero-summary">
+      <div class="hero-name-block">
+        <div class="identity-name">Reid Sroda</div>
+        <span class="identity-role">Data Scientist · Milwaukee, WI</span>
+        <div class="status-dot">Open to Opportunities</div>
+      </div>
+
+      <p class="hero-summary-text">
+        I'm a <strong>Data Scientist at Komatsu</strong> focused on MLOps, anomaly detection, and production-grade data pipelines. I've built ML systems that identify product defects weeks before they surface manually — delivering an estimated <strong>$2M in annual warranty savings</strong>.
+      </p>
     </div>
-    <div class="status-dot">Milwaukee, WI</div>
   </div>
 
-  <!-- Body: headline + bio left, detail cards right -->
+  <!-- BOTTOM: detail cards in a row -->
   <div class="hero-body">
-    <div class="hero-left">
-      <div class="hero-label">↳ About Me</div>
-      <h1>Building systems that<br><em>find what's hidden.</em></h1>
-      <p class="hero-bio">
-        I'm a <strong>Data Scientist at Komatsu</strong> focused on MLOps, anomaly detection, and production-grade data pipelines. I've built ML systems that identify product defects weeks before they surface manually — saving millions in warranty costs.
-      </p>
-      <p class="hero-bio-extra">
-        My background spans <strong>statistical modeling, PySpark ETL, and applied ML</strong> across manufacturing and non-profit domains. I'm currently pursuing my M.S. in Data Science at Purdue while continuing to ship impactful work at Komatsu.
-      </p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-ghost">Get In Touch</a>
-      </div>
-      <div class="hero-chips">
-        <span class="hero-chip"><span class="chip-icon">📍</span> Milwaukee, WI</span>
-        <span class="hero-chip"><span class="chip-icon">🎓</span> M.S. Data Science, Purdue</span>
-        <span class="hero-chip"><span class="chip-icon">💼</span> Data Scientist @ Komatsu</span>
-        <span class="hero-chip"><span class="chip-icon">🔬</span> MLOps · Anomaly Detection</span>
-      </div>
+    <div class="detail-card">
+      <div class="dc-label">Current Role</div>
+      <div class="dc-value">Data Scientist · Komatsu (Dec 2025–Present)</div>
     </div>
-
-    <div class="hero-right">
-      <div class="detail-card">
-        <div class="dc-label">Current Role</div>
-        <div class="dc-value">Data Scientist · Komatsu (Dec 2025–Present)</div>
-      </div>
-      <div class="detail-card">
-        <div class="dc-label">Education</div>
-        <div class="dc-value">M.S. Data Science · Purdue University (2025–2028)<br>B.S. Data Science & Statistics · UW-Madison (2020–2024)</div>
-      </div>
-      <div class="detail-card">
-        <div class="dc-label">Specializations</div>
-        <div class="dc-value">Anomaly Detection · ETL Pipelines · Statistical Alerting · NLP Clustering</div>
-      </div>
-      <div class="detail-card">
-        <div class="dc-label">Tools & Platforms</div>
-        <div class="dc-value">Palantir Foundry · Salesforce · Snowflake · Apache Spark</div>
-      </div>
-      <div class="detail-card">
-        <div class="dc-label">Contact</div>
-        <div class="dc-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e795809495888386a79e868f8888c984888a">[email&#160;protected]</a> · 920-450-9729</div>
-      </div>
+    <div class="detail-card">
+      <div class="dc-label">Education</div>
+      <div class="dc-value">M.S. Data Science · Purdue (2025–2028)<br>B.S. Data Science · UW-Madison (2020–2024)</div>
+    </div>
+    <div class="detail-card">
+      <div class="dc-label">Specializations</div>
+      <div class="dc-value">Anomaly Detection · ETL Pipelines · NLP Clustering</div>
+    </div>
+    <div class="detail-card">
+      <div class="dc-label">Tools & Platforms</div>
+      <div class="dc-value">Palantir Foundry · Snowflake · Salesforce · Spark</div>
+    </div>
+    <div class="detail-card">
+      <div class="dc-label">Contact</div>
+      <div class="dc-value">rgsroda@yahoo.com<br>920-450-9729</div>
     </div>
   </div>
 
   <!-- Stats bar -->
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">3+</div>
-      <div class="stat-label">Years Exp.</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">$2M</div>
-      <div class="stat-label">Warranty Savings</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-label">Awards</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">71%</div>
-      <div class="stat-label">BetBot Win Rate</div>
-    </div>
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Exp.</div></div>
+    <div class="stat"><div class="stat-num">$2M</div><div class="stat-label">Warranty Savings</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Awards</div></div>
+    <div class="stat"><div class="stat-num">71%</div><div class="stat-label">BetBot Win Rate</div></div>
   </div>
 
   <!-- Scroll hint -->
@@ -1120,6 +1067,4 @@
         <label>Subject</label>
         <input type="text" placeholder="What's this about?">
       </div>
-      <div class="form-field">
-        <label>Message</label>
-        <textarea rows="5" placeholder="Tell me about your project
+      <d
